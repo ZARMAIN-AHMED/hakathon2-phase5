@@ -76,6 +76,12 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
+                <Link
+                  href="/chat"
+                  className="text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >
+                  ChatBot
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -143,6 +149,13 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                 >
                   Dashboard
+                </Link>
+                <Link
+                  href="/chat"
+                  className="block text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  ChatBot
                 </Link>
                 <button
                   onClick={() => {

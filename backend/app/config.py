@@ -24,7 +24,14 @@ class Settings(BaseSettings):
     APP_VERSION: str = "0.1.0"
 
     # CORS
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    ALLOWED_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "https://localhost:3000",
+        "https://127.0.0.1:3000"
+    ]
 
 
 settings = Settings()

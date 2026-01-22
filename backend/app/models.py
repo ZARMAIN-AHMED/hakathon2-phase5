@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from uuid import UUID, uuid4
 
 from pydantic import EmailStr, Field
@@ -13,15 +13,15 @@ class BaseModel(SQLModel):
 
 
 class UserBase(SQLModel):
-    email: EmailStr = Field(index=True, unique=True, max_length=255)
+    email: EmailStr = Field(index=True, unique=True)
 
 
 class User(UserBase, BaseModel, table=True):
-    hashed_password: str = Field(max_length=255)
+    hashed_password: str
 
 
 class UserCreate(UserBase):
-    password: str = Field(min_length=8, max_length=100)
+    password: str = Field(min_length=8)
 
 
 class UserRead(UserBase):
@@ -30,8 +30,8 @@ class UserRead(UserBase):
 
 
 class TaskBase(SQLModel):
-    title: str = Field(min_length=1, max_length=200)
-    description: Optional[str] = Field(default=None, max_length=1000)
+    title: str = Field(min_length=1)
+    description: Optional[str] = Field(default=None)
     is_completed: bool = Field(default=False)
 
 
@@ -44,14 +44,80 @@ class TaskCreate(TaskBase):
 
 
 class TaskUpdate(SQLModel):
-    title: Optional[str] = Field(default=None, min_length=1, max_length=200)
-    description: Optional[str] = Field(default=None, max_length=1000)
+    title: Optional[str] = Field(default=None, min_length=1)
+    description: Optional[str] = Field(default=None)
     is_completed: Optional[bool] = None
 
 
 class TaskRead(TaskBase):
     id: UUID
     user_id: UUID
+    created_at: datetime
+
+
+# Chatbot models
+class ChatMessageBase(SQLModel):
+    role: str  # 'user' or 'assistant'
+    content: str
+    conversation_id: UUID = Field(foreign_key="conversation.id", index=True)
+
+
+class ChatMessage(ChatMessageBase, BaseModel, table=True):
+    pass
+
+
+class ChatMessageCreate(ChatMessageBase):
+    pass
+
+
+class ChatMessageRequest(SQLModel):
+    """Request model for chat messages where conversation_id comes from URL path"""
+    role: str = "user"  # Default to user role
+    content: str
+
+
+class ChatRequest(SQLModel):
+    content: str
+
+
+class ToolCallResponse(SQLModel):
+    name: str
+    arguments: dict
+    response: dict
+
+
+class TaskUpdateResponse(SQLModel):
+    action: str
+    task: Optional[dict] = None
+    tasks: Optional[List[dict]] = None
+
+
+class ChatMessageRead(ChatMessageBase):
+    id: UUID
+    created_at: datetime
+    tool_calls: List[ToolCallResponse] = []
+    task_updates: List[TaskUpdateResponse] = []
+
+
+class ConversationBase(SQLModel):
+    title: str = Field(default="New Conversation")
+    user_id: UUID = Field(foreign_key="user.id", index=True)
+
+
+class Conversation(ConversationBase, BaseModel, table=True):
+    pass
+
+
+class ConversationCreate(ConversationBase):
+    pass
+
+
+class ConversationUpdate(SQLModel):
+    title: Optional[str] = Field(default=None, max_length=200)
+
+
+class ConversationRead(ConversationBase):
+    id: UUID
     created_at: datetime
 
 

@@ -8,7 +8,7 @@ from app.auth.jwt import get_current_user_id
 from app.db import get_db
 from app.models import Task, TaskCreate, TaskRead, TaskUpdate, User
 
-router = APIRouter(prefix="/tasks", tags=["Tasks"])
+router = APIRouter(prefix="/tasks", tags=["Tasks"]) 
 
 
 @router.get("", response_model=list[TaskRead])
