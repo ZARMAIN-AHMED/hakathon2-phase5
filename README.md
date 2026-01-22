@@ -143,3 +143,4 @@ specs/                      # Feature specifications and plans
 4. Implement following the constitution principles
 5. Test and validate compliance with constitution requirements
 "# hakathon2-phase3" 
+"# hakathon2-phase3" 
