@@ -165,3 +165,4 @@ This deployment adheres to the project constitution by:
 - Maintaining loose coupling between services
 - Supporting deployment on both Minikube (local) and cloud Kubernetes
 - Implementing proper secret management via Kubernetes secrets"# hakathon2-phase5" 
+"# hakathon2-phase5" 
