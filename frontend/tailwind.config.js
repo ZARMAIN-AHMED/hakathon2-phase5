@@ -5,8 +5,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
+   extend: {
+    fontFamily: {
+      sans: [
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Arial",
+        "sans-serif",
+      ],
+    },
   },
   plugins: [],
 };

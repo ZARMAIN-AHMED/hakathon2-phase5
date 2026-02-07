@@ -91,16 +91,14 @@ export default function Features() {
   ];
 
   return (
-    <>
-    
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 py-24 sm:py-32 text-white">
       {/* Background glow effects */}
-   
+
       <div className="absolute inset-0">
         <div className="absolute top-[-120px] right-[-120px] w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-[-120px] left-[-120px] w-96 h-96 bg-sky-500/20 rounded-full blur-3xl"></div>
       </div>
- 
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-base font-semibold text-indigo-400 tracking-wide uppercase">
@@ -142,6 +140,6 @@ export default function Features() {
           ))}
         </div>
       </div>
-    </section></>
+    </section>
   );
 }

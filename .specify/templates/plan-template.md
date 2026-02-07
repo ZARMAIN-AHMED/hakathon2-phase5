@@ -31,7 +31,15 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**Mandatory Compliance Verification:**
+- [ ] Spec-Driven Development approach confirmed
+- [ ] Event-Driven Architecture planned (not CRUD/Synchronous)
+- [ ] Dapr components planned for pub/sub, state, service invocation
+- [ ] Kubernetes deployment strategy aligned (Minikube → Cloud)
+- [ ] Security & Secrets approach compliant (no hardcoded values)
+- [ ] Agent behavior constraints respected (no requirement invention)
+- [ ] Architecture follows loose coupling principles
+- [ ] Infrastructure abstraction via Dapr confirmed
 
 ## Project Structure
 

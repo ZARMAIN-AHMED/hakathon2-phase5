@@ -1,55 +1,63 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: 1.0.0 → 1.1.0
+Modified principles: None (new constitution)
+Added sections: All principles and sections as specified
+Removed sections: None
+Templates requiring updates: 
+- ✅ .specify/templates/plan-template.md - Updated to align with new principles
+- ✅ .specify/templates/spec-template.md - Updated to align with new principles  
+- ✅ .specify/templates/tasks-template.md - Updated to reflect new principle-driven task types
+- ✅ .specify/templates/commands/sp.constitution.md - Updated to remove outdated references
+Runtime docs updated: 
+- ✅ README.md - Updated to reference new constitution
+- ✅ docs/quickstart.md - Updated to align with new principles
+Follow-up TODOs: None
+-->
+
+# Full Stack Todo App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Engineering Philosophy
+Spec-Driven Development is mandatory. No "vibe coding". Deterministic, reviewable, judge-traceable output. Agents must stop if requirements are missing.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Development Workflow (NON-NEGOTIABLE)
+Follow Specify → Plan → Tasks → Implement workflow. No code without Task ID. No implementation without approved spec. Every change must map back to spec artifacts.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Architecture Principles
+Event-Driven Architecture first. Async workflows over synchronous APIs. Loose coupling between services. No shared databases across services. Frontend must not directly call internal services.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Distributed Systems Rules
+Kafka-compatible Pub/Sub is mandatory. Events represent facts, not commands. Consumers must be idempotent. Failures must not cascade across services.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Dapr Mandates
+Use Dapr Pub/Sub instead of Kafka SDKs. Use Dapr Jobs API for reminders & scheduling. Use Dapr Service Invocation for service calls. Use Dapr State Store where applicable. Infrastructure must be swappable via config, not code.
 
-### [PRINCIPLE_6_NAME]
+### VI. Kubernetes & Deployment Standards
+Must run on Minikube locally. Must deploy to managed Kubernetes (AKS / GKE / OKE). Use Helm charts for deployment. Sidecar pattern (Dapr) is mandatory. Cloud deployment must mirror local setup.
 
+### VII. Security & Secrets
+No secrets in code or env files. Use Kubernetes Secrets or Dapr Secret Store. Credentials must never be committed. Principle of least privilege applies.
 
-[PRINCIPLE__DESCRIPTION]
+### VIII. CI/CD & Observability
+CI/CD via GitHub Actions required. Automated build & deploy. Logging and monitoring must be enabled. Failures must be observable.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### IX. Agent Behavior Constraints
+Agents must not invent requirements. Agents must not bypass spec files. Agents must request clarification when blocked. Constitution > Specify > Plan > Tasks hierarchy is enforced.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### X. Success Criteria
+System is event-driven, not CRUD-centric. Advanced features implemented asynchronously. Infrastructure abstraction proven via Dapr. Judges can trace: Code → Task → Plan → Spec → Constitution.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Additional Constraints
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Technology stack requirements: Node.js/Express for backend, React for frontend, Kafka/Dapr for event streaming, PostgreSQL for persistence, Kubernetes for orchestration. Compliance standards: Follow OWASP security guidelines. Deployment policies: Blue-green deployments required for zero-downtime releases.
+
+## Development Workflow
+
+Code review requirements: All pull requests must be reviewed by at least one senior engineer. Testing gates: All automated tests must pass before merge. Deployment approval process: Automated pipeline handles deployments after successful tests and reviews.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices. All implementations must verify compliance with these principles. Complexity must be justified with clear benefits. This document governs all development activities and takes precedence over any conflicting guidance.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2026-02-06 | **Last Amended**: 2026-02-06

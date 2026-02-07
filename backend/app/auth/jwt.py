@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Annotated, Optional
+from uuid import UUID
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -19,7 +20,7 @@ security = HTTPBearer()
 
 # Token data model
 class TokenData(BaseModel):
-    user_id: str
+    user_id: UUID
     email: Optional[str] = None
 
 
@@ -47,7 +48,12 @@ def decode_token(token: str) -> TokenData:
         if user_id is None:
             raise JWTException("Invalid token: missing subject")
 
-        return TokenData(user_id=user_id, email=email)
+        # Convert string ID to UUID
+        user_uuid = UUID(user_id) if user_id else None
+        return TokenData(user_id=user_uuid, email=email)
+    except ValueError:
+        # Handle invalid UUID format
+        raise JWTException("Invalid token: user ID is not a valid UUID")
     except JWTError as e:
         raise JWTException(f"Invalid token: {str(e)}")
 

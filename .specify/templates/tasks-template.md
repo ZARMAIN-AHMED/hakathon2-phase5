@@ -159,6 +159,21 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
+## Constitution Compliance Tasks
+
+**Purpose**: Verify all constitution requirements are met
+
+- [ ] TXXX [P] Verify Event-Driven Architecture implementation (not CRUD/Synchronous)
+- [ ] TXXX [P] Confirm Dapr components for pub/sub, state, service invocation
+- [ ] TXXX [P] Validate Kubernetes deployment on Minikube and cloud
+- [ ] TXXX [P] Verify no hardcoded secrets or service URLs
+- [ ] TXXX [P] Confirm loose coupling between services
+- [ ] TXXX [P] Validate infrastructure abstraction via Dapr
+- [ ] TXXX [P] Verify all inter-service communication uses Dapr Service Invocation
+- [ ] TXXX [P] Confirm all event streaming uses Dapr Pub/Sub (not direct Kafka SDKs)
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

@@ -53,17 +53,28 @@ const getInitialState = () => {
     };
   }
 
-  const token = localStorage.getItem("token");
-  const userStr = localStorage.getItem("user");
-  const user = userStr ? JSON.parse(userStr) : null;
+  try {
+    const token = localStorage.getItem("token");
+    const userStr = localStorage.getItem("user");
+    const user = userStr ? JSON.parse(userStr) : null;
 
-  return {
-    user,
-    token,
-    isAuthenticated: !!token && !!user,
-    isLoading: false,
-    error: null,
-  };
+    return {
+      user,
+      token,
+      isAuthenticated: !!token && !!user,
+      isLoading: false,
+      error: null,
+    };
+  } catch (error) {
+    console.error("Error initializing auth state:", error);
+    return {
+      user: null,
+      token: null,
+      isAuthenticated: false,
+      isLoading: false,
+      error: null,
+    };
+  }
 };
 
 // ==================== Auth Store ====================

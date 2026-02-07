@@ -113,3 +113,14 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+### Constitution Compliance Requirements
+
+- **CC-001**: System MUST follow Event-Driven Architecture principles (not CRUD-centric)
+- **CC-002**: All inter-service communication MUST use Dapr Service Invocation
+- **CC-003**: All event streaming MUST use Dapr Pub/Sub (not direct Kafka SDKs)
+- **CC-004**: All state management MUST use Dapr State Store where applicable
+- **CC-005**: System MUST be deployable on Minikube and cloud Kubernetes
+- **CC-006**: No hardcoded secrets or service URLs in configuration
+- **CC-007**: All components MUST be loosely coupled with asynchronous communication
+- **CC-008**: Implementation MUST follow Spec-Driven Development workflow
